@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../App.css';
 import ListContacts from './ListContacts';
 import Search from './Search';
+import { Route } from 'react-router-dom';
+import CreateContact from './CreateContact'
 
 class App extends Component {
 
@@ -45,10 +47,15 @@ class App extends Component {
   render() {
     return (
       <div className="App conatiner-fluid">
-        <Search />
-        <ListContacts
-          contacts={this.state.contacts}
-          onDeleteContact={this.deleteContact}/>
+        <Route exact path="/" render={() => (
+          <div>
+            <Search />
+            <ListContacts
+              contacts={this.state.contacts}
+              onDeleteContact={this.deleteContact} />
+          </div>
+          )} />
+        <Route exact path="/create/contact" component={CreateContact} />
       </div>
     );
   }
