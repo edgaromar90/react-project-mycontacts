@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #263238;
+    padding-bottom: 50px;
+}
+
+.search{
+    position: static;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.list-contacts{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-contacts li{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px #000;
+}
+.profile-pict{
+}
+.profile-info{
+    margin-left: 1.1em;
+}
+.input-group-addon{
+    background-color: #fff;
+}
