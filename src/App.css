@@ -1,54 +1,54 @@
 *{
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body{
-    background-color: #263238;
-    padding-bottom: 50px;
+  background-color: #263238;
+  padding-bottom: 50px;
 }
 
 .search{
-    position: static;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+  position: static;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
 
 .list-contacts{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .list-contacts li{
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 20px;
-    box-shadow: 5px 5px 5px #000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px #000;
 }
 .profile-pict{
 }
 .profile-info{
-    margin-left: 1.1em;
+  margin-left: 1.1em;
 }
 .profile-close:hover{
-    cursor: pointer;
-    color: #D00;
+  cursor: pointer;
+  color: #D00;
 }
 .input-group-addon{
-    background-color: #fff;
+  background-color: #fff;
 }
 .create-contact-top{
-    background-color: #fff;
-    margin-bottom: 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
 }
 .create-contact-form-wrapper{
-    background-color: #fff;
-    padding: 30px;
+  background-color: #fff;
+  padding: 30px;
 }
 
 
