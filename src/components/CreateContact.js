@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class CreateContact extends Component {
 
   state = {
+    newContact: {},
     fullName: '',
     occupation: '',
     skills: [],
@@ -16,11 +17,16 @@ class CreateContact extends Component {
   validateOccupation = (input) => {}
   handleSubmit = (form) => {}
 
-  handleInputFullName = (query) => {}
-  handleInputOccupation = (query) => {}
+  handleInputFullName = (query) => {
+    this.setState({inputFullName: query})
+  }
+
+  handleInputOccupation = (query) => {
+    this.setState({inputOccupation: query})
+  }
+
   handleInputSkills = (query) => {
     this.setState({inputSkills: query})
-    console.log(query)
   }
 
   handleAddSkill = () => {
@@ -57,15 +63,22 @@ class CreateContact extends Component {
         <div className="row create-contact-form-wrapper justify-content-center">
           <form className="col-11 col-lg-8 col-xl-5">
             <div className="form-group">
-              <input type="text" className="form-control form-control-lg" placeholder="Enter Full Name" />
+              <input
+                type="text"
+                onChange={(e) => this.handleInputFullName(e.target.value)}
+                className="form-control form-control-lg"
+                placeholder="Enter Full Name" />
             </div>
             <div className="form-group">
-              <input type="text" className="form-control form-control-lg" placeholder="Enter Occupation" />
+              <input
+                type="text"
+                onChange={(e) => this.handleInputOccupation(e.target.value)}
+                className="form-control form-control-lg"
+                placeholder="Enter Occupation" />
             </div>
             <div className="form-group input-group">
               <input
                 type="text"
-                id="inputSkill"
                 value={this.state.inputSkills}
                 onChange={(e) => this.handleInputSkills(e.target.value)}
                 className="form-control form-control-lg"
@@ -77,6 +90,7 @@ class CreateContact extends Component {
             </div>
             <button type="submit" className="btn btn-lg btn-primary">Submit</button>
           </form>
+          {/* Separate into a different Component ListSkills */}
           <div className="col-11 col-lg-8 col-xl-5 create-contact-list-skills">
             {
               this.state.skills && (
