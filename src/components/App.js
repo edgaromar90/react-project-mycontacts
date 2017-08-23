@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import '../App.css';
-import ListContacts from './ListContacts';
-import Search from './Search';
 import { Route } from 'react-router-dom';
-import CreateContact from './CreateContact'
+import ListContacts from './ListContacts';
+import CreateContact from './CreateContact';
+import '../App.css';
 
 class App extends Component {
 
@@ -54,15 +53,13 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App conatiner-fluid">
         <Route exact path="/" render={() => (
-          <div>
-            <Search />
-            <ListContacts
-              contacts={this.state.contacts}
-              onDeleteContact={this.deleteContact} />
-          </div>
+          <ListContacts
+            contacts={this.state.contacts}
+            onDeleteContact={this.deleteContact} />
         )} />
         <Route exact path="/create/contact" render={() => (
           <CreateContact onAddNewContact={this.addNewContact}/>

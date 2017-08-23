@@ -10,12 +10,22 @@ class CreateContact extends Component {
     inputSkills: ''
   }
 
-  validateName = (input) => {}
-  validateOccupation = (input) => {}
+  validateName = (input) => {
+    return true
+  }
+  validateOccupation = (input) => {
+    return true
+  }
+  validateSkills = (input) => {
+    return true
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
     let { name, occupation, skills } = this.state
+    if(this.validateName(name) && this.validateOccupation(occupation) && this.validateSkills(skills)){
+      console.log('Hello');
+    }
     this.props.onAddNewContact({ name, occupation, skills})
   }
 
