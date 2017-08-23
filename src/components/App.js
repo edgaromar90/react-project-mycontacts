@@ -44,6 +44,15 @@ class App extends Component {
     ));
   }
 
+  addNewContact = (contact) => {
+    contact.id = this.state.contacts.length + 2;
+    this.setState(prevState => (
+      {
+        contacts: prevState.contacts.concat([contact])
+      }
+    ));
+  }
+
   render() {
     return (
       <div className="App conatiner-fluid">
@@ -54,8 +63,10 @@ class App extends Component {
               contacts={this.state.contacts}
               onDeleteContact={this.deleteContact} />
           </div>
-          )} />
-        <Route exact path="/create/contact" component={CreateContact} />
+        )} />
+        <Route exact path="/create/contact" render={() => (
+          <CreateContact onAddNewContact={this.addNewContact}/>
+        )} />
       </div>
     );
   }

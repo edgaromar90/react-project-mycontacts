@@ -4,29 +4,31 @@ import { Link } from 'react-router-dom';
 class CreateContact extends Component {
 
   state = {
-    newContact: {},
-    fullName: '',
+    name: '',
     occupation: '',
     skills: [],
-    inputFullName: '',
-    inputOccupation: '',
     inputSkills: ''
   }
 
-  validateFullName = (input) => {}
+  validateName = (input) => {}
   validateOccupation = (input) => {}
-  handleSubmit = (form) => {}
 
-  handleInputFullName = (query) => {
-    this.setState({inputFullName: query})
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let { name, occupation, skills } = this.state
+    this.props.onAddNewContact({ name, occupation, skills})
   }
 
-  handleInputOccupation = (query) => {
-    this.setState({inputOccupation: query})
+  handleInputName = (name) => {
+    this.setState({name})
   }
 
-  handleInputSkills = (query) => {
-    this.setState({inputSkills: query})
+  handleInputOccupation = (occupation) => {
+    this.setState({occupation})
+  }
+
+  handleInputSkills = (querySkills) => {
+    this.setState({inputSkills: querySkills})
   }
 
   handleAddSkill = () => {
@@ -61,17 +63,19 @@ class CreateContact extends Component {
           </span>
         </div>
         <div className="row create-contact-form-wrapper justify-content-center">
-          <form className="col-11 col-lg-8 col-xl-5">
+          <form className="col-11 col-lg-8 col-xl-5" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
               <input
                 type="text"
-                onChange={(e) => this.handleInputFullName(e.target.value)}
+                value={this.state.name}
+                onChange={(e) => this.handleInputName(e.target.value)}
                 className="form-control form-control-lg"
                 placeholder="Enter Full Name" />
             </div>
             <div className="form-group">
               <input
                 type="text"
+                value={this.state.occupation}
                 onChange={(e) => this.handleInputOccupation(e.target.value)}
                 className="form-control form-control-lg"
                 placeholder="Enter Occupation" />
