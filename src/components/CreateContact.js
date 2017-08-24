@@ -7,36 +7,36 @@ class CreateContact extends Component {
     name: '',
     occupation: '',
     skills: [],
-    inputSkills: ''
+    inputSkills: '',
+    emptyFields: false
   }
-
-  validateName = (input) => {
-    return true
+/* Very basic validation, just avoiding empty fields. */
+  validateName = (name) => {
+    return name ? true : false
   }
-  validateOccupation = (input) => {
-    return true
+  validateOccupation = (occupation) => {
+    return occupation ? true : false
   }
-  validateSkills = (input) => {
-    return true
+  validateSkills = (skills) => {
+    return skills.length ? true : false
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     let { name, occupation, skills } = this.state
     if(this.validateName(name) && this.validateOccupation(occupation) && this.validateSkills(skills)){
-      console.log('Hello');
+      this.props.onAddNewContact({ name, occupation, skills})
+    }else{
+      this.setState({emptyFields: true})
     }
-    this.props.onAddNewContact({ name, occupation, skills})
   }
 
   handleInputName = (name) => {
     this.setState({name})
   }
-
   handleInputOccupation = (occupation) => {
     this.setState({occupation})
   }
-
   handleInputSkills = (querySkills) => {
     this.setState({inputSkills: querySkills})
   }
@@ -63,6 +63,8 @@ class CreateContact extends Component {
 
   render() {
 
+    const { emptyFields, name, occupation, skills, inputSkills } = this.state
+
     return(
       <div>
         <div className="row create-contact-top">
@@ -75,9 +77,10 @@ class CreateContact extends Component {
         <div className="row create-contact-form-wrapper justify-content-center">
           <form className="col-11 col-lg-8 col-xl-5" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
+              {emptyFields && (<p className="alert alert-danger">All fields are required.</p>)}
               <input
                 type="text"
-                value={this.state.name}
+                value={name}
                 onChange={(e) => this.handleInputName(e.target.value)}
                 className="form-control form-control-lg"
                 placeholder="Enter Full Name" />
@@ -85,7 +88,7 @@ class CreateContact extends Component {
             <div className="form-group">
               <input
                 type="text"
-                value={this.state.occupation}
+                value={occupation}
                 onChange={(e) => this.handleInputOccupation(e.target.value)}
                 className="form-control form-control-lg"
                 placeholder="Enter Occupation" />
@@ -93,7 +96,7 @@ class CreateContact extends Component {
             <div className="form-group input-group">
               <input
                 type="text"
-                value={this.state.inputSkills}
+                value={inputSkills}
                 onChange={(e) => this.handleInputSkills(e.target.value)}
                 className="form-control form-control-lg"
                 placeholder="Add Skills"
@@ -104,12 +107,11 @@ class CreateContact extends Component {
             </div>
             <button type="submit" className="btn btn-lg btn-primary">Submit</button>
           </form>
-          {/* Separate into a different Component ListSkills */}
           <div className="col-11 col-lg-8 col-xl-5 create-contact-list-skills">
             {
-              this.state.skills && (
+              skills && (
                 <ul className="list-group float-right">
-                  {this.state.skills.map((skill) => (
+                  {skills.map((skill) => (
                     <li
                       className="list-group-item text-success text-right"
                       style={ {border: 'none'} }
