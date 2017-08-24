@@ -20,7 +20,7 @@ class ListContacts extends Component {
 
   getSearchComponent = (query, showingContacts, contacts) => {
     return (
-      <div className="search row">
+      <div className="search">
         <div className="col-12 justify-content-center input-group input-group-lg">
           <input
             className="form-control col-10 col-lg-6"
