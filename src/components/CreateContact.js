@@ -67,7 +67,7 @@ class CreateContact extends Component {
 
     return(
       <div>
-        <div className="row create-contact-top">
+        <div className="create-contact-top">
           <span className="input-group-addon" style={ {width:'69px', height:'60px', border:'none'} }>
             <Link to="/">
               <i className="fa fa-arrow-left text-primary" style={ {fontSize:'29px', paddingLeft: '10px'} } aria-hidden="true"></i>
