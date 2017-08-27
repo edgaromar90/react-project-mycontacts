@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import ListContacts from './ListContacts';
 import CreateContact from './CreateContact';
+import * as ContactsAPI from '../utils/ContactsAPI';
 import '../App.css';
 
 class App extends Component {
@@ -11,20 +12,31 @@ class App extends Component {
   }
 
   deleteContact = (contact) => {
-    this.setState(prevState =>(
-      {
-        contacts: prevState.contacts.filter(c => c.id !== contact.id)
-      }
-    ));
+    ContactsAPI.deleteContact(contact.id).then(response => {
+      console.log(response)
+      this.setState(prevState =>(
+        {
+          contacts: prevState.contacts.filter(c => c.id !== contact.id)
+        }
+      ))}
+    );
   }
 
   addNewContact = (contact) => {
-    contact.id = this.state.contacts.length + 2;
-    this.setState(prevState => (
-      {
-        contacts: prevState.contacts.concat([contact])
-      }
-    ));
+    //contact.id = this.state.contacts.length + 2; <-- No need for this now
+    ContactsAPI.addContact(contact).then(response =>
+      this.setState(prevState => (
+        {
+          contacts: prevState.contacts.concat([contact])
+        }
+      ))
+    );
+  }
+
+  componentDidMount(){
+    ContactsAPI.getAll().then(contacts =>
+      this.setState({contacts})
+    )
   }
 
   render() {
