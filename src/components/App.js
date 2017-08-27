@@ -22,21 +22,20 @@ class App extends Component {
     );
   }
 
+  updateContact = () =>{
+    ContactsAPI.getAll().then(contacts =>
+      this.setState({contacts})
+    );
+  }
+
   addNewContact = (contact) => {
-    //contact.id = this.state.contacts.length + 2; <-- No need for this now
     ContactsAPI.addContact(contact).then(response =>
-      this.setState(prevState => (
-        {
-          contacts: prevState.contacts.concat([contact])
-        }
-      ))
+      this.updateContact()
     );
   }
 
   componentDidMount(){
-    ContactsAPI.getAll().then(contacts =>
-      this.setState({contacts})
-    )
+    this.updateContact()
   }
 
   render() {

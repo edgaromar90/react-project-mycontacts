@@ -72,7 +72,7 @@ class ListContacts extends Component {
 
         <div className="list-contacts-wrapper">
           <ul className="list-contacts row justify-content-center">
-            { showingContacts.map(contact => (
+            { (showingContacts) && showingContacts.map(contact => (
                 <li key={contact.id} className="col-12 col-sm-10 col-lg-8">
                   <Contact
                     contact={contact}

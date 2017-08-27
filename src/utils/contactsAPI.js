@@ -1,4 +1,5 @@
-const url = 'http://localhost:5000';
+//const url = 'http://localhost:5000'; //Use this for accessing the app on your local machine
+const url = 'http://192.168.1.151:5000'; //Use this for accessing the app on your network use your IP
 
 export const getAll = () =>
   fetch(`${url}/get/contact/`)
