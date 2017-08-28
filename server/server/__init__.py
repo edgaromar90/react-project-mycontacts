@@ -82,6 +82,43 @@ def getAllContacts():
   contacts = fetchContacts()
   return jsonify(contacts)
 
+'''
+@app.route('/get/contact/<id>', methods=['GET'])
+def getContact(id):
+  #Fetching the contact with the matching ID
+  try:
+    contact = Contact.query.filter_by(id=id).first()
+  except:
+    return 'Error with the Database'
+
+  if not contact:
+    return 'Contact does not Exist'
+
+  #Fetching Skills of the current contact
+  skills = fetchSkills(contact)
+
+  return jsonify({'response':formatContact(contact, skills)})
+'''
+
+@app.route('/create/contact/', methods=['POST'])
+def createContact():
+  contact = request.get_json()
+  skills = []
+  for skill in contact['skills']:
+    try:
+      skills.append(Skill(skill_name=skill))
+    except:
+      return jsonify({'response':'Error with the database'})
+  try:
+    new_contact = Contact(name=contact['name'], occupation=contact['occupation'], skills=skills)
+    db.session.add(new_contact)
+    db.session.commit()
+    db.session.close()
+  except:
+    return jsonify({'response':'Error commiting to the database'})
+  return jsonify({'response':'success', 'info':'User created'})
+
+
 @app.route('/delete/contact/<id>', methods=['DELETE', 'OPTIONS'])
 def deleteContact(id):
   if request.method == 'OPTIONS':
