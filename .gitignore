@@ -9,14 +9,17 @@
 # production
 /build
 
+# server build
+/server/build
+
 #server dist
-/dist
+/server/dist
 
 # server info
-/server.egg-info
+/server/server.egg-info
 
 # virtual enviroment
-/venv
+/server/venv
 
 # misc
 .DS_Store
