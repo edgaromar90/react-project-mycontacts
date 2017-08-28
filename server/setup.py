@@ -10,14 +10,21 @@ setup(
     install_requires=[
         'flask',
         'flask_sqlalchemy',
-        'flask_cors',
-        'virtualenv'
+        'flask_cors'
     ],
 )
+#pip install virtualenv
+#virtualenv venv
+#./venv/Scripts/activate
+
+#pip install -e .
+
 #SET FLASK_APP="server" windows
 #SET FLASK_DEBUG="1"
+
 #$env:FLASK_APP="server" if using powershell
 #$env:FLASK_DEBUG="1"
+
 #export FLASK_APP=server in Linux
-#pip install -e .
+
 #flask run
