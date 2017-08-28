@@ -21,6 +21,12 @@
 # virtual enviroment
 /server/venv
 
+# python compiled files
+*.pyc
+
+# sqlite3 database
+*.db
+
 # misc
 .DS_Store
 .env.local
