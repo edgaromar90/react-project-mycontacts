@@ -82,5 +82,21 @@ def getAllContacts():
   contacts = fetchContacts()
   return jsonify(contacts)
 
+@app.route('/delete/contact/<id>', methods=['DELETE', 'OPTIONS'])
+def deleteContact(id):
+  if request.method == 'OPTIONS':
+    return jsonify({'response':'option arrived'})
+  contact = db.session.query(Contact).get(id)
+  if contact == None:
+    return "contact does not exist"
+  else:
+    try:
+      db.session.delete(contact)
+      db.session.commit()
+      db.session.close()
+    except:
+      return jsonify({'response':'failed', 'info':'Error with the database'})
+    return '' #Automatically gets transformed to a '200 Ok' response
+
 if __name__ == '__main__':
   app.run()
