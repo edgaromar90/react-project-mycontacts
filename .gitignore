@@ -9,6 +9,15 @@
 # production
 /build
 
+#server dist
+/dist
+
+# server info
+/server.egg-info
+
+# virtual enviroment
+/venv
+
 # misc
 .DS_Store
 .env.local
