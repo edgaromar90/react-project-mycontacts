@@ -63,8 +63,7 @@ class ListContacts extends Component {
     } else {
       showingContacts = contacts;
     }
-
-    showingContacts.sort(sortBy('name'));
+    showingContacts !== [] && showingContacts.sort(sortBy('name'));
 
     return(
       <div>

@@ -30,15 +30,21 @@ class CreateContact extends Component {
       this.setState({emptyFields: true})
     }
   }
+  clearEmptyFieldsError = () => {
+    this.setState({emptyFields:false})
+  }
 
   handleInputName = (name) => {
     this.setState({name})
+    this.clearEmptyFieldsError()
   }
   handleInputOccupation = (occupation) => {
     this.setState({occupation})
+    this.clearEmptyFieldsError()
   }
   handleInputSkills = (querySkills) => {
     this.setState({inputSkills: querySkills})
+    this.clearEmptyFieldsError()
   }
 
   handleAddSkill = () => {
@@ -63,7 +69,7 @@ class CreateContact extends Component {
 
   render() {
 
-    const { emptyFields, name, occupation, skills, inputSkills } = this.state
+    const { emptyFields, name, occupation, skills, inputSkills } = this.state;
 
     return(
       <div>
@@ -75,7 +81,7 @@ class CreateContact extends Component {
           </span>
         </div>
         <div className="row create-contact-form-wrapper justify-content-center">
-          <form className="col-11 col-lg-8 col-xl-5" onSubmit={this.handleSubmit.bind(this)}>
+          <form className="col-11 col-lg-8 col-xl-5" onSubmit={this.handleSubmit}>
             <div className="form-group">
               {emptyFields && (<p className="alert alert-danger">All fields are required.</p>)}
               <input
@@ -105,7 +111,7 @@ class CreateContact extends Component {
                 <i className="fa fa-plus text-primary" id="plusBtn" aria-hidden="true"></i>
               </span>
             </div>
-            <button type="submit" className="btn btn-lg btn-primary">Submit</button>
+            <button type="submit" className="btn btn-lg btn-primary">Save</button>
           </form>
           <div className="col-11 col-lg-8 col-xl-5 create-contact-list-skills">
             {

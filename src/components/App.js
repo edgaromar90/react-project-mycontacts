@@ -13,7 +13,6 @@ class App extends Component {
 
   deleteContact = (contact) => {
     ContactsAPI.deleteContact(contact.id).then(response => {
-      console.log(response)
       this.setState(prevState =>(
         {
           contacts: prevState.contacts.filter(c => c.id !== contact.id)
@@ -22,16 +21,22 @@ class App extends Component {
     );
   }
 
-  updateContact = () =>{
-    ContactsAPI.getAll().then(contacts =>
-      this.setState({contacts})
-    );
+  updateContact = () => {
+    ContactsAPI.getAll().then(contacts => {
+      Array.isArray(contacts) && this.setState({contacts})
+    })
+      .catch(err => console.log(err) );
   }
 
   addNewContact = (contact) => {
-    ContactsAPI.addContact(contact).then(response =>
-      this.updateContact()
-    );
+    ContactsAPI.addContact(contact).then(response => {
+      contact.id = this.state.contacts.length + 1;
+      this.setState(prevState => (
+        {
+          contacts: prevState.contacts.concat(contact)
+        }
+      ));
+    });
   }
 
   componentDidMount(){
@@ -40,21 +45,23 @@ class App extends Component {
 
   render() {
 
+    const { contacts } = this.state
     return (
       <div className="App conatiner-fluid">
         <Route exact path="/" render={() => (
           <ListContacts
-            contacts={this.state.contacts}
+            contacts={contacts}
             onDeleteContact={this.deleteContact} />
-        )} />
+        )}/>
         <Route exact path="/create/contact" render={( {history} ) => (
           <CreateContact
+            contacts={contacts}
             onAddNewContact={(contact) => {
               this.addNewContact(contact)
               history.push('/')
             }
           }/>
-        )} />
+        )}/>
       </div>
     );
   }

@@ -66,10 +66,10 @@ def fetchContacts():
   try:
     contacts = Contact.query.all()
   except:
-    return 'Error with the database'
+    return 'Error db'
 
   if len(contacts) == 0:
-    return 'No contacts found'
+    return 'Not found'
   for contact in contacts:
     contact_skills = fetchSkills(contact)
     response.append(formatContact(contact, contact_skills))
@@ -80,7 +80,15 @@ def fetchContacts():
 @app.route('/get/contact/', methods=['GET'])
 def getAllContacts():
   contacts = fetchContacts()
-  return jsonify(contacts)
+
+  if contacts == 'Error db':
+    return jsonify({'error':'Error with the database'})
+
+  elif contacts == 'Not found':
+    return jsonify({'info':'Error: No Contacts'})
+
+  else:
+    return jsonify(contacts)
 
 '''
 @app.route('/get/contact/<id>', methods=['GET'])

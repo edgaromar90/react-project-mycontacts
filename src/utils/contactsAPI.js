@@ -3,10 +3,14 @@
 //const url = 'http://localhost:5000'; //Use this for accessing the app on your local machine
 const url = 'http://192.168.1.151:5000'; //Use this for accessing the app on your network use your IP
 
-export const getAll = () =>
-  fetch(`${url}/get/contact/`)
-    .then(res => res.json())
-      .then(contacts => contacts)
+export const getAll = () => {
+  return new Promise( (resolve, reject) => {
+    fetch(`${url}/get/contact/`)
+      .then(res => res.json() )
+        .then(contacts => contacts.error ? reject(contacts) : resolve(contacts) )
+          .catch(err => reject(err))
+  });
+}
 
 export const getContact = (id) =>
   fetch(`${url}/get/contact/${id}`)
