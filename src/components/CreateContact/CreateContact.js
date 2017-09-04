@@ -23,13 +23,14 @@ class CreateContact extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    let { name, occupation, skills } = this.state
+    const { name, occupation, skills } = this.state
     if(this.validateName(name) && this.validateOccupation(occupation) && this.validateSkills(skills)){
       this.props.onAddNewContact({ name, occupation, skills})
     }else{
       this.setState({emptyFields: true})
     }
   }
+
   clearEmptyFieldsError = () => {
     this.setState({emptyFields:false})
   }

@@ -11,6 +11,7 @@ if platform.system() == 'Windows':
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.getcwd()+'\\database.db'
 else:
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getcwd()+'/database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
@@ -85,28 +86,26 @@ def getAllContacts():
     return jsonify({'error':'Error with the database'})
 
   elif contacts == 'Not found':
-    return jsonify({'info':'Error: No Contacts'})
+    return jsonify({'error':'No Contacts in the database'})
 
   else:
     return jsonify(contacts)
 
-'''
 @app.route('/get/contact/<id>', methods=['GET'])
 def getContact(id):
   #Fetching the contact with the matching ID
   try:
     contact = Contact.query.filter_by(id=id).first()
   except:
-    return 'Error with the Database'
+    return jsonify({'error':'Error with the Database'})
 
   if not contact:
-    return 'Contact does not Exist'
+    return jsonify({'error':'Contact does not Exist'})
 
   #Fetching Skills of the current contact
   skills = fetchSkills(contact)
 
-  return jsonify({'response':formatContact(contact, skills)})
-'''
+  return jsonify(formatContact(contact, skills))
 
 @app.route('/create/contact/', methods=['POST'])
 def createContact():
