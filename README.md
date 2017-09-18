@@ -36,7 +36,7 @@ _The App should be running in_ **`localhost:3000`**
 
 If you want more information on all the dependencies that will be needed for this App you can take a look at this file `package.json` located in the main directory.
 
-_Note: If you prefer to work with `yarn` just switch `npm` with `yarn` (`yarn start` instead of `npm start` for example).
+_Note_: If you prefer to work with `yarn` just switch `npm` with `yarn` (`yarn start` instead of `npm start` for example).
 
 ## Backend Server
 Before handling the files in the `/server` directory you should that the app is currently working with a very simple external API hosted by me. (This may change later so it's worth to take a look at this section if you ever have problem with the API).

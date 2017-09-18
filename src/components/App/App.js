@@ -57,6 +57,9 @@ class App extends Component {
             contacts={this.state.contacts}
             onDeleteContact={this.deleteContact} />
         )} />
+        {/* When onAddNewContact is called we pass the contact to
+        *** addNewContact() and immediately redirect to the root
+        *** "/" view. */}
         <Route path="/create/contact" render={ ({history}) => (
           <CreateContact onAddNewContact={(contact) => {
             this.addNewContact(contact)

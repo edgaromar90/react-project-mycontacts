@@ -1,11 +1,17 @@
 import React from 'react';
 
+/**
+** Stateless Functional Component, receives a single contact
+** and attach the onDeleteContact() prop to an icon, passing
+** the contact so it can be deleted.
+*/
 function Contact(props){
   const { contact } = props;
 
   return(
     <div className="contact">
       <div className="profile-pict float-left">
+      {/* Hard coded picture, changing the image for different screen size */}
         <picture>
           <source media="(max-width: 700px)" srcSet="https://placekitten.com/g/60/60"/>
           <source media="(max-width: 1000px)" srcSet="https://placekitten.com/g/90/90"/>

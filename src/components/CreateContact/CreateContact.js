@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 class CreateContact extends Component {
 
+  /* Initial state of this component */
   state = {
     name: '',
     occupation: '',
@@ -10,6 +11,7 @@ class CreateContact extends Component {
     inputSkills: '',
     emptyFields: false
   }
+
 /* Very basic validation, just avoiding empty fields. */
   validateName = (name) => {
     return name ? true : false
@@ -21,20 +23,11 @@ class CreateContact extends Component {
     return skills.length ? true : false
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, occupation, skills } = this.state
-    if(this.validateName(name) && this.validateOccupation(occupation) && this.validateSkills(skills)){
-      this.props.onAddNewContact({ name, occupation, skills})
-    }else{
-      this.setState({emptyFields: true})
-    }
-  }
-
   clearEmptyFieldsError = () => {
     this.setState({emptyFields:false})
   }
 
+  /*Handlers for each Input Field*/
   handleInputName = (name) => {
     this.setState({name})
     this.clearEmptyFieldsError()
@@ -46,6 +39,17 @@ class CreateContact extends Component {
   handleInputSkills = (querySkills) => {
     this.setState({inputSkills: querySkills})
     this.clearEmptyFieldsError()
+  }
+
+  /* Handling Submit and basic validation to avoid empty fields */
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, occupation, skills } = this.state
+    if(this.validateName(name) && this.validateOccupation(occupation) && this.validateSkills(skills)){
+      this.props.onAddNewContact({ name, occupation, skills})
+    }else{
+      this.setState({emptyFields: true})
+    }
   }
 
   handleAddSkill = () => {

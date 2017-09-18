@@ -7,8 +7,8 @@ import Contact from '../Contact/Contact';
 class ListContacts extends Component {
 
   state = {
-      query: ''
-    }
+    query: ''
+  }
 
   handleChange = (query) =>{
     this.setState({query})
@@ -17,7 +17,7 @@ class ListContacts extends Component {
   clearQuery = () => {
     this.setState({query:''})
   }
-
+  /* Create the search bar */
   getSearchComponent = (query, showingContacts, contacts) => {
     return (
       <div>
@@ -59,6 +59,11 @@ class ListContacts extends Component {
     const { query } = this.state;
     let showingContacts;
 
+    /* If there's a value in the search bar, meaning query has a value,
+    ** we filter the contacts passed as props and assigned them to
+    ** showingContacts. Else we assign the whole contacts array to
+    ** showingContacts.
+    */
     if(query){
       const match = new RegExp(escapeRegExp(query), 'i');
       showingContacts = contacts.filter(contact => match.test(contact.name));

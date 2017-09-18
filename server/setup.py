@@ -13,18 +13,3 @@ setup(
         'flask_cors'
     ],
 )
-#pip install virtualenv
-#virtualenv venv
-#./venv/Scripts/activate
-
-#pip install -e .
-
-#SET FLASK_APP="server" windows
-#SET FLASK_DEBUG="1"
-
-#$env:FLASK_APP="server" if using powershell
-#$env:FLASK_DEBUG="1"
-
-#export FLASK_APP=server in Linux
-
-#flask run

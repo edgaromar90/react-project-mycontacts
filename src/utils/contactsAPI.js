@@ -2,7 +2,6 @@
 import fetch from 'isomorphic-fetch';
 
 //const url = 'http://127.0.0.1:5000'; //Use this for accessing the app on your local machine
-//const url = 'http://192.168.1.151:5000'; //Use this for accessing the app on your network use your IP
 const url = 'http://edgaromar90.pythonanywhere.com'; //Use this for accessing the app on your network use your IP
 
 export const getAll = () =>

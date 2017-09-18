@@ -11,10 +11,13 @@ if platform.system() == 'Windows':
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.getcwd()+'\\database.db'
 else:
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getcwd()+'/database.db'
+
+#Removing the notification in the command line when running the app
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+#Basic Model for Contact
 class Contact(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(30))
@@ -24,6 +27,7 @@ class Contact(db.Model):
   def __repr__(self):
     return "<Contact(name='%s', occupation='%s')>" % (self.name, self.occupation)
 
+#Basic Model for Skill
 class Skill(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   skill_name = db.Column(db.String(20))
@@ -35,6 +39,13 @@ class Skill(db.Model):
 #################### UTILS ################
 
 def formatContact(contact, skills):
+  '''
+  Receives a contact and the skills and create a new formatted
+  dictionary.
+  @param -> {contact} - dictionary
+  @param -> [skills] - list of skills for this contact
+  @return -> {contact} - dictionary with the right format
+  '''
   return {
     'id':contact.id,
     'name':contact.name,
@@ -44,7 +55,11 @@ def formatContact(contact, skills):
 
 def fetchSkills(contact):
   '''
-
+  Fetch the skills associated with the contact, and return
+  the list of skills found, if there's no skills then an
+  empty list is returned.
+  @param -> {contact} - dictionary of contact
+  @return -> [skill_list] - list of skills (if found)
   '''
   skill_list = []
   try:
@@ -61,7 +76,7 @@ def fetchContacts():
   Fetch the contacts from the database, it uses "fetchSkills" to gather
   the skills of those contacts and using "formatContact" to format each
   contact.
-  @return -> [response] - array of dictionaries [{},{}...]
+  @return -> [response] - list of dictionaries [{},{}...]
   '''
   response = []
   try:
